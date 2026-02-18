@@ -32,7 +32,7 @@ git clone git@github.com:mokanove/rdks.git
 OR
 git clone https://github.com/mokanove/rdks.git
 ```
-## Init source code
+## Init Binary
 ```
 cd /root/etc/rustdesk
 rm DONOTREMOVE
