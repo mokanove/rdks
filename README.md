@@ -32,3 +32,12 @@ git clone git@github.com:mokanove/rdks.git
 OR
 git clone https://github.com/mokanove/rdks.git
 ```
+## Init source code
+```
+cd /root/etc/rustdesk
+rm DONOTREMOVE
+curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-amd64.zip
+unzip rustdesk-server-linux-amd64
+mv amd64/* ./
+rm -rf amd64/
+```
