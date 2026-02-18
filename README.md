@@ -9,6 +9,8 @@ Rustdesk Server for immortalwrt
 
 ## How to use?
 > Once installed, it can be started with just one command.
+>
+> Run it on your router
 ```
 /etc/init.d/rdks start
 ```
