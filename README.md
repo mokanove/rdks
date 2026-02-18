@@ -7,6 +7,22 @@ Rustdesk Server for immortalwrt
 >
 > There is a chance that you will not be able to connect to the public internet.
 
+## How to use?
+> Once installed, it can be started with just one command.
+```
+/etc/init.d/rdks start
+```
+> Check running status:
+```
+/etc/init.d/rdks status
+```
+> Use the built-in inspection tool to test.
+```
+/etc/rustdesk/rustdesk-utils doctor 127.0.0.1
+OR
+/etc/rustdesk/rustdesk-utils doctor ::1
+```
+
 ## How to make
 > General tutorials : [Here](https://github.com/mokanove/mokanove/tree/main/luci-app)
 
