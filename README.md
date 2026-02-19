@@ -38,7 +38,7 @@ git clone https://github.com/mokanove/rdks.git
 ```
 cd /root/etc/rustdesk
 rm DONOTREMOVE
-curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-amd64.zip
+curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.14/rustdesk-server-linux-amd64.zip
 unzip rustdesk-server-linux-amd64
 mv amd64/* ./
 rm -rf amd64/
