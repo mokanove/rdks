@@ -12,6 +12,8 @@ Rustdesk Server for immortalwrt
 > Once installed, it can be started with just one command.
 >
 > Run it on your router
+>
+> By me test , it will be autostart
 ```
 /etc/init.d/rdks start
 ```
