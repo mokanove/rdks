@@ -36,6 +36,9 @@ OR
 git clone https://github.com/mokanove/rdks.git
 ```
 ## Init Binary
+> Rustdesk server v1.1.15 maybe have question , such as: can't connect
+>
+> By me test , v1.1.14 no problem
 ```
 cd /root/etc/rustdesk
 rm DONOTREMOVE
