@@ -1,6 +1,7 @@
 # rdks
 Rustdesk Server for immortalwrt
-
+> Only Support X86_64
+> 
 > This is a semi-finished product with various complex and difficult-to-treat issues.
 >
 > Currently known items that cannot be repaired include:
