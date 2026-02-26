@@ -10,6 +10,15 @@ LUCI_PKGARCH:=x86_64
 
 include $(INCLUDE_DIR)/package.mk
 
+define Build/Prepare
+endef
+
+define Build/Configure
+endef
+
+define Build/Compile
+endef
+
 define Package/rdks
   SECTION:=net
   CATEGORY:=Network
