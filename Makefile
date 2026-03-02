@@ -24,7 +24,7 @@ define Package/rdks
   CATEGORY:=Network
   TITLE:=Rustdesk Server for immortalwrt
   DEPENDS:=
-  PKGARCH:=aarch64_generic
+  PKGARCH:=x86_64
 endef
 
 define Package/rdks/description
