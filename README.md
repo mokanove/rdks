@@ -21,7 +21,7 @@ Rustdesk Server for immortalwrt
 ```
 /etc/init.d/rdks status
 ```
-> Use the built-in inspection tool to test.
+> Use the built-in utils to test.
 ```
 /etc/rustdesk/rustdesk-utils doctor 127.0.0.1
 OR
@@ -33,9 +33,7 @@ OR
 
 ## Clone source code
 ```
-git clone git@github.com:mokanove/rdks.git
-OR
-git clone https://github.com/mokanove/rdks.git
+Do it youself.
 ```
 ## Init Binary
 > Rustdesk server v1.1.15 maybe have question , such as: can't connect
