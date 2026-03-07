@@ -28,7 +28,7 @@ OR
 /etc/rustdesk/rustdesk-utils doctor ::1
 ```
 
-## How to make
+## How to build
 > General tutorials : [Here](https://github.com/mokanove/mokanove/tree/main/luci-app)
 
 ## Clone source code
