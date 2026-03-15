@@ -1,6 +1,6 @@
 # rdks
 Rustdesk Server for immortalwrt
-> Only Support X86_64
+> Only Support X86_64 & aarch64_generic & coretex-a53
 > 
 > This is a semi-finished product with various complex and difficult-to-treat issues.
 >
@@ -12,8 +12,6 @@ Rustdesk Server for immortalwrt
 > Once installed, it can be started with just one command.
 >
 > Run it on your router
->
-> By me test , it will be autostart
 ```
 /etc/init.d/rdks start
 ```
@@ -23,9 +21,7 @@ Rustdesk Server for immortalwrt
 ```
 > Use the built-in utils to test.
 ```
-/etc/rustdesk/rustdesk-utils doctor 127.0.0.1
-OR
-/etc/rustdesk/rustdesk-utils doctor ::1
+/etc/rustdesk/rustdesk-utils doctor localhost
 ```
 
 ## How to build
@@ -36,13 +32,10 @@ OR
 Do it youself.
 ```
 ## Init Binary
-> Rustdesk server v1.1.15 maybe have question , such as: can't connect
->
-> By me test , v1.1.14 no problem
 ```
 cd /root/etc/rustdesk
 rm DONOTREMOVE
-curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.14/rustdesk-server-linux-amd64.zip
+curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-amd64.zip
 unzip rustdesk-server-linux-amd64
 mv amd64/* ./
 rm -rf amd64/
