@@ -46,6 +46,8 @@ jobs:
             curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-amd64.zip
             unzip rustdesk-server-linux-amd64.zip
             rm rustdesk-server-linux-amd64.zip
+            mv amd64/* ./
+            rm -rf amd64/
             cd ../../../../../
             make package/rdks/compile V=s -j$(nproc)
 
@@ -57,6 +59,8 @@ jobs:
             curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-arm64v8.zip
             unzip rustdesk-server-linux-arm64v8.zip
             rm rustdesk-server-linux-arm64v8.zip
+            mv arm64v8/* ./
+            rm -rf arm64v8/
             cd ../../../../../
             sed -i 's/x86_64/aarch64_generic/g' Makefile
             make package/rdks/compile V=s -j$(nproc)
