@@ -1,6 +1,6 @@
 # rdks
 Rustdesk Server for immortalwrt
-> Only Support X86_64 & aarch64_generic & coretex-a53
+> Only Support X86_64 & aarch64
 > 
 > This is a semi-finished product with various complex and difficult-to-treat issues.
 >
@@ -25,13 +25,16 @@ Rustdesk Server for immortalwrt
 ```
 
 ## How to build
-> General tutorials : [Here](https://github.com/mokanove/mokanove/tree/main/luci-app)
+> General tutorials : [Here](https://github.com/mokanove/mokanove/blob/main/luci-app.md)
 
 ## Clone source code
 ```
 Do it youself.
 ```
-## Init Binary
+## Init Binary.
+> WARN: Binary file architecture to determines which routers it supports.
+>
+> The following is an example of an x86_64 architecture.
 ```
 cd /root/etc/rustdesk
 rm DONOTREMOVE
