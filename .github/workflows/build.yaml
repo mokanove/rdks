@@ -24,22 +24,21 @@ jobs:
       - name: Clone ImmortalWrt 25.12-SNAPSHOT RockChip SDK & init
         uses: mokanove/mokanove/actions/prepare-rockchip-apk-sdk@main
 
-      - name: Clone Project source code
+      - name: Clone Project source code & Get version
         shell: bash
         run: |
           cd immortalwrt-sdk-24.10.5-x86-64_gcc-13.3.0_musl.Linux-x86_64/package/
           git clone https://github.com/mokanove/rdks.git
+          cd rdks
+          VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          cd ../../../
+          cd immortalwrt-sdk-25.12-SNAPSHOT-x86-64_gcc-14.3.0_musl.Linux-x86_64/package/
+          git clone https://github.com/mokanove/rdks.git
           cd ../../
           cd immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64/package/
           git clone https://github.com/mokanove/rdks.git
-
-      - name: Get Version
-        id: get_version
-        shell: bash
-        run: |
-            cd immortalwrt-sdk-24.10.5-x86-64_gcc-13.3.0_musl.Linux-x86_64/package/rdks
-            VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          cd ../../
 
       - name: Build X86_64 ipk
         shell: bash
