@@ -61,8 +61,9 @@ jobs:
             rm rustdesk-server-linux-arm64v8.zip
             mv arm64v8/* ./
             rm -rf arm64v8/
-            cd ../../../../../
+            cd ../../../
             sed -i 's/x86_64/aarch64_generic/g' Makefile
+            cd ../../../
             make package/rdks/compile V=s -j$(nproc)
 
       - name: Release
