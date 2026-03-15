@@ -27,7 +27,7 @@ jobs:
           cd immortalwrt-sdk-24.10.5-x86-64_gcc-13.3.0_musl.Linux-x86_64/package/
           git clone https://github.com/mokanove/rdks.git
           cd ../../
-          cd immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl/package/
+          cd immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64/package/
           git clone https://github.com/mokanove/rdks.git
 
       - name: Get Version
@@ -52,7 +52,7 @@ jobs:
       - name: Build aarch64_generic
         shell: bash
         run: |
-            cd immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl/package/rdks/root/etc/rustdesk
+            cd immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64/package/rdks/root/etc/rustdesk
             rm DONOTREMOVE
             curl -LO https://github.com/rustdesk/rustdesk-server/releases/download/1.1.15/rustdesk-server-linux-arm64v8.zip
             unzip rustdesk-server-linux-arm64v8.zip
@@ -67,7 +67,7 @@ jobs:
           tag_name: V${{ steps.get_version.outputs.version }}
           files: |
             immortalwrt-sdk-24.10.5-x86-64_gcc-13.3.0_musl.Linux-x86_64/bin/packages/*/base/*.ipk
-            immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl/bin/packages/*/base/*.apk
+            immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64/bin/packages/*/base/*.apk
           body: |
             # This release by GitHub Actions
             > I don't know if it will run, but as long as it was compiled, that's fine.
