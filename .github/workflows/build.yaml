@@ -63,7 +63,7 @@ jobs:
             rm -rf arm64v8/
             cd ../../../
             sed -i 's/x86_64/aarch64_generic/g' Makefile
-            cd ../../../
+            cd ../../
             make package/rdks/compile V=s -j$(nproc)
 
       - name: Release
