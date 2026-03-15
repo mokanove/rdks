@@ -87,12 +87,13 @@ jobs:
           tag_name: V${{ steps.get_version.outputs.version }}
           files: |
             immortalwrt-sdk-24.10.5-x86-64_gcc-13.3.0_musl.Linux-x86_64/bin/packages/*/base/*.ipk
+            immortalwrt-sdk-25.12-SNAPSHOT-x86-64_gcc-14.3.0_musl.Linux-x86_64/bin/packages/*/base/*.apk
             immortalwrt-sdk-25.12-SNAPSHOT-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64/bin/packages/*/base/*.apk
           body: |
             # This release by GitHub Actions
             > I don't know if it will run, but as long as it was compiled, that's fine.
-            >
-            > Please note: APK files do not specify the architecture in their filenames.
+            ## Please note:
+            > APK files do not specify the architecture in their filenames.
             >
             > Therefore, please refer to the timestamps; the later timestamps are for aarch64_rockchip devices, and the earlier timestamps are for x86_64 devices.
         env:
