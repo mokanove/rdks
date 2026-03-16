@@ -1,5 +1,10 @@
 name : Let's build from here
 
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     name: Build (${{ matrix.version }}_${{ matrix.ext }})
