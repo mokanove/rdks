@@ -60,7 +60,9 @@ jobs:
           VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-          [ "${{ matrix.needs_patch }}" == "true" ] && sed -i 's/x86_64/aarch64_generic/g' "./Makefile"
+          if [ "${{ matrix.needs_patch }}" == "true" ]; then
+            sed -i 's/x86_64/aarch64_generic/g' ./Makefile
+          fi
 
       - name: Build!
         shell: bash
