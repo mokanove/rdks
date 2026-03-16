@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   build:
-    name: Build (${{ matrix.version }}_${{ matrix.ext }})
+    name: Build (${{ matrix.version }}-${{ matrix.rustdesk_arch }}_${{ matrix.ext }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
