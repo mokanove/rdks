@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdks
-PKG_VERSION:=0.1.8
+PKG_VERSION:=0.1.9
 PKG_RELEASE:=$(shell date +%Y%m%d%H%M)
 PKG_LICENSE:=GPL-3.0
 
