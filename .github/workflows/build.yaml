@@ -90,6 +90,6 @@ jobs:
             ## Please note:
             > APK files do not specify the architecture in their filenames.
             >
-            > Therefore, please refer to the timestamps; the later timestamps are for X86_64 devices, and the earlier timestamps are for aarch64_rockchip devices.
+            > Therefore, please refer to the timestamps; the later timestamps are for aarch64_rockchip devices, and the earlier timestamps are for X86_64 devices.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
