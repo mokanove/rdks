@@ -61,7 +61,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
           if [ "${{ matrix.needs_patch }}" == "true" ]; then
-            sleep 600
+            sleep 100
             sed -i 's/x86_64/aarch64_generic/g' ./Makefile
           fi
 
