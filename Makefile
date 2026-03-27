@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdks
-PKG_VERSION:=0.1.9
+PKG_VERSION:=0.2.0
 PKG_RELEASE:=$(shell date +%Y%m%d%H%M)
 PKG_LICENSE:=GPL-3.0
 
@@ -23,7 +23,6 @@ define Package/rdks
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Rustdesk Server for immortalwrt
-  DEPENDS:=
   PKGARCH:=x86_64
 endef
 
