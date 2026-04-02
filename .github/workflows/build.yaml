@@ -1,4 +1,4 @@
-name : Let's build from here
+name :
 
 on:
   push:
@@ -7,7 +7,7 @@ permissions:
   contents: write
 jobs:
   build:
-    name: Build (${{ matrix.version }}-${{ matrix.rustdesk_arch }}_${{ matrix.ext }})
+    name: Build (${{ matrix.version }}-${{ matrix.rustdesk_arch }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -53,8 +53,9 @@ jobs:
           VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+          sed -i 's/PKGRELEASET/${{ matrix.target }}_${{ matrix.subtarget }}/g' ./Makefile
+
           if [ "${{ matrix.needs_patch }}" == "true" ]; then
-            sleep 100
             sed -i 's/x86_64/aarch64_generic/g' ./Makefile
           fi
 
@@ -76,13 +77,11 @@ jobs:
         with:
           tag_name: V${{ steps.get_version.outputs.version }}
           files: |
-            ${{ matrix.sdk_name }}/bin/packages/*/base/*.${{ matrix.ext }}
+            ${{ matrix.sdk_name }}/bin/packages/*/*/*
           body: |
-            # This release by GitHub Actions
-            > I don't know if it will run, but as long as it was compiled, that's fine.
-            ## Please note:
-            > APK files do not specify the architecture in their filenames.
-            >
-            > Therefore, please refer to the timestamps; the later timestamps are for aarch64_rockchip devices, and the earlier timestamps are for X86_64 devices.
+            # 🚀 Release Notes
+            ### ✨ Change Logs
+            - **Filename update**: The architecture can now be directly seen in the filename.
+            - **Makefile update**: The Makefile was modified to conform to the official ImmortalWrt standard.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
