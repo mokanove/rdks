@@ -16,16 +16,16 @@ jobs:
           - version: "25.12.0-rc1"
             target: "x86"
             subtarget: "64"
+            release_arch: "x86_64"
             rustdesk_arch: "amd64"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-x86-64_gcc-14.3.0_musl.Linux-x86_64"
-            ext: "apk"
             needs_patch: false
           - version: "25.12.0-rc1"
             target: "rockchip"
             subtarget: "armv8"
+            release_arch: "aarch64_generic"
             rustdesk_arch: "arm64v8"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64"
-            ext: "apk"
             needs_patch: true
 
     steps:
@@ -53,8 +53,6 @@ jobs:
           VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-          sed -i 's/PKGRELEASET/${{ matrix.target }}_${{ matrix.subtarget }}/g' ./Makefile
-
           if [ "${{ matrix.needs_patch }}" == "true" ]; then
             sed -i 's/x86_64/aarch64_generic/g' ./Makefile
           fi
@@ -71,6 +69,8 @@ jobs:
             rm -rf ${{ matrix.rustdesk_arch }}/
             cd ../../../../../
             make package/rdks/compile V=s -j$(nproc)
+            cd bin/packages/${{ matrix.release_arch }}/base/
+            mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.target }}_${{ matrix.subtarget }}.apk
 
       - name: Release
         uses: softprops/action-gh-release@master

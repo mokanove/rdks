@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rdks
 PKG_VERSION:=0.2.1
-PKG_RELEASE:=$(shell date +%Y%m%d%H%M%S).PKGRELEASET
+PKG_RELEASE:=$(shell date +%Y%m%d%H%M%S)
 PKG_LICENSE:=GPL-3.0
 
 LUCI_TITLE:=Rustdesk Server for immortalwrt
