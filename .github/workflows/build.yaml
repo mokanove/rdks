@@ -14,14 +14,10 @@ jobs:
       matrix:
         include:
           - version: "25.12.0-rc1"
-            target: "x86"
-            subtarget: "64"
             rustdesk_arch: "amd64"
             patch_arch: "X86_64"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-x86-64_gcc-14.3.0_musl.Linux-x86_64"
           - version: "25.12.0-rc1"
-            target: "rockchip"
-            subtarget: "armv8"
             rustdesk_arch: "arm64v8"
             patch_arch: "aarch64_generic"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64"
@@ -64,7 +60,7 @@ jobs:
             rm -rf ${{ matrix.rustdesk_arch }}/
             cd ../../../../../
             make package/rdks/compile V=s -j$(nproc)
-            cd bin/packages/${{ matrix.target }}/${{ matrix.subtarget }}/base/
+            cd bin/packages/**/base/
             mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.rustdesk_arch }}.apk
 
       - name: Release
