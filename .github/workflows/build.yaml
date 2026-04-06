@@ -60,7 +60,7 @@ jobs:
             rm -rf ${{ matrix.rustdesk_arch }}/
             cd ../../../../../
             make package/rdks/compile V=s -j$(nproc)
-            cd bin/packages/**/base/
+            cd bin/packages/${{ matrix.patch_arch }}/base/
             mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.rustdesk_arch }}.apk
 
       - name: Release
