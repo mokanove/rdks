@@ -1,4 +1,4 @@
-name :
+name : amigos y amigas de medellin
 
 on:
   push:
@@ -16,17 +16,15 @@ jobs:
           - version: "25.12.0-rc1"
             target: "x86"
             subtarget: "64"
-            release_arch: "x86_64"
             rustdesk_arch: "amd64"
+            patch_arch: "X86_64"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-x86-64_gcc-14.3.0_musl.Linux-x86_64"
-            needs_patch: false
           - version: "25.12.0-rc1"
             target: "rockchip"
             subtarget: "armv8"
-            release_arch: "aarch64_generic"
             rustdesk_arch: "arm64v8"
+            patch_arch: "aarch64_generic"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64"
-            needs_patch: true
 
     steps:
       - name: Checkout Code
@@ -38,9 +36,6 @@ jobs:
       - name: Prepare SDK
         uses: mokanove/mokanove/actions/prepare-sdk@main
         with:
-          version: ${{ matrix.version }}
-          target: ${{ matrix.target }}
-          subtarget: ${{ matrix.subtarget }}
           sdk_name: ${{ matrix.sdk_name }}
 
       - name: Clone Project source code & Get Version & Change Arch
@@ -53,8 +48,8 @@ jobs:
           VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-          if [ "${{ matrix.needs_patch }}" == "true" ]; then
-            sed -i 's/x86_64/aarch64_generic/g' ./Makefile
+          if [ "${{ matrix.patch_arch }}" != "true" ]; then
+            sed -i 's/x86_64/${{ matrix.patch_arch }}/g' ./Makefile
           fi
 
       - name: Build!
@@ -67,21 +62,20 @@ jobs:
             rm rustdesk-server-linux-${{ matrix.rustdesk_arch }}.zip
             mv ${{ matrix.rustdesk_arch }}/* ./
             rm -rf ${{ matrix.rustdesk_arch }}/
-            cd ../../../../../
-            make package/rdks/compile V=s -j$(nproc)
-            cd bin/packages/${{ matrix.release_arch }}/base/
-            mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.target }}_${{ matrix.subtarget }}.apk
+            cd ../../../
+            make compile/ V=s -j$(nproc)
+            cd bin/packages/${{ matrix.target }}/${{ matrix.subtarget }}/base/
+            mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.rustdesk_arch }}.apk
 
       - name: Release
         uses: softprops/action-gh-release@master
         with:
           tag_name: V${{ steps.get_version.outputs.version }}
           files: |
-            ${{ matrix.sdk_name }}/bin/packages/*/*/*
+            ${{ matrix.sdk_name }}/bin/packages/**/*.apk
           body: |
             # 🚀 Release Notes
             ### ✨ Change Logs
-            - **Filename update**: The architecture can now be directly seen in the filename.
-            - **Makefile update**: The Makefile was modified to conform to the official ImmortalWrt standard.
+            - **External Updates**: The content of the action and Makefile has been optimized.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
