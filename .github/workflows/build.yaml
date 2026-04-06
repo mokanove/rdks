@@ -62,8 +62,8 @@ jobs:
             rm rustdesk-server-linux-${{ matrix.rustdesk_arch }}.zip
             mv ${{ matrix.rustdesk_arch }}/* ./
             rm -rf ${{ matrix.rustdesk_arch }}/
-            cd ../../../
-            make compile/ V=s -j$(nproc)
+            cd ../../../../../
+            make package/rdks/compile V=s -j$(nproc)
             cd bin/packages/${{ matrix.target }}/${{ matrix.subtarget }}/base/
             mv rdks* rdks-${{ steps.get_version.outputs.version }}-${{ matrix.rustdesk_arch }}.apk
 
