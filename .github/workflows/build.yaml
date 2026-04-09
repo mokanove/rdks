@@ -1,4 +1,4 @@
-name : amigos y amigas de medellin
+name : Y to', to', to' lo que tu quieres de mi
 
 on:
   push:
@@ -7,18 +7,16 @@ permissions:
   contents: write
 jobs:
   build:
-    name: Build (${{ matrix.version }}-${{ matrix.rustdesk_arch }})
+    name: Build for ${{ matrix.patch_arch }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
-          - version: "25.12.0-rc1"
-            rustdesk_arch: "amd64"
-            patch_arch: "X86_64"
+          - rustdesk_arch: "amd64"
+            patch_arch: "x86_64"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-x86-64_gcc-14.3.0_musl.Linux-x86_64"
-          - version: "25.12.0-rc1"
-            rustdesk_arch: "arm64v8"
+          - rustdesk_arch: "arm64v8"
             patch_arch: "aarch64_generic"
             sdk_name: "immortalwrt-sdk-25.12.0-rc1-rockchip-armv8_gcc-14.3.0_musl.Linux-x86_64"
 
@@ -44,7 +42,7 @@ jobs:
           VERSION=$(grep -E "^PKG_VERSION[[:space:]]*:=" Makefile | sed -E 's/.*:=[[:space:]]*//' | tr -d '[:space:]')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-          if [ "${{ matrix.patch_arch }}" != "true" ]; then
+          if [ "${{ matrix.patch_arch }}" != "x86_64" ]; then
             sed -i 's/x86_64/${{ matrix.patch_arch }}/g' ./Makefile
           fi
 
