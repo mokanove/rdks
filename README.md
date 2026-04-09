@@ -14,7 +14,9 @@
 ```
 /etc/rustdesk/rustdesk-utils doctor localhost
 ```
-
+## 📦 Install
+[Releases](https://github.com/mokanove/rdks/releases)
+[Generic Guide](https://867678.xyz/install-iapk)
 ## 🛠 How to build
 > To initialize the SDK, please go to <https://867678.xyz/sdk>
 ```
