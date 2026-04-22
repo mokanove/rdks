@@ -71,7 +71,7 @@ jobs:
           files: |
             ${{ matrix.sdk_name }}/bin/packages/**/*.apk
           body: |
-            # 🚀 Release Notes
+            # 📝 Release Notes
             - Upgraded SDK to 25.12.0-rc2
             - Added support for aarch64_coretex-a53
         env:
